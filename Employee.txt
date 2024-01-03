@@ -1,0 +1,37 @@
+create table Employee(
+    Ssn int, PRIMARY KEY(Ssn),
+    Ename varchar(25) NOT NULL,
+    Eaddr varchar(25) NOT NULL,
+    EDOB DATE NOT NULL,
+    ESex varchar(10) NOT NULL,
+    ESal int NOT NULL,
+    SuperSsn int, FOREIGN KEY(SuperSsn),
+    Dno int, FOREIGN KEY(Dno) REFERENCES Department(Dno)
+);
+
+create table Department(
+    Dno int, PRIMARY KEY(Dno),
+    Dname varchar(25) NOT NULL,
+    Mgrssn int NOT NULL,
+    MgrStartDate date NOT NULL
+);
+
+create table Dlocation(
+    Dno int, FOREIGN KEY (Dno) REFERENCES Department(Dno),
+    Dlocation varchar(25),
+    PRIMARY KEY(Dno, Dlocation)
+);
+
+create table Project(
+    Pno int, PRIMARY KEY(Pno),
+    Pname varchar(25) NOT NULL,
+    Ploc varchar(25) NOT NULL,
+    Dno int, FOREIGN KEY(Dno) REFERENCES Department(Dno)
+);
+
+create table Works_on(
+    Ssn int, FOREIGN KEY(Ssn) REFERENCES Employee(Ssn),
+    Pno int, FOREIGN KEY(Pno) REFERENCES Project(Pno),
+    Hours int NOT NULL,
+    PRIMARY KEY(Ssn, Pno)
+);
