@@ -1,13 +1,16 @@
-create table Employee(
-    Ssn int, PRIMARY KEY(Ssn),
-    Ename varchar(25) NOT NULL,
-    Eaddr varchar(25) NOT NULL,
+CREATE TABLE Employee (
+    Ssn INT PRIMARY KEY,
+    Ename VARCHAR(25) NOT NULL,
+    Eaddr VARCHAR(25) NOT NULL,
     EDOB DATE NOT NULL,
-    ESex varchar(10) NOT NULL,
-    ESal int NOT NULL,
-    SuperSsn int, FOREIGN KEY(SuperSsn),
-    Dno int, FOREIGN KEY(Dno) REFERENCES Department(Dno)
+    ESex VARCHAR(10) NOT NULL,
+    ESal INT NOT NULL,
+    SuperSsn INT,
+    FOREIGN KEY (SuperSsn) REFERENCES Employee(Ssn),
+    Dno INT,
+    FOREIGN KEY (Dno) REFERENCES Department(Dno)
 );
+
 
 create table Department(
     Dno int, PRIMARY KEY(Dno),
